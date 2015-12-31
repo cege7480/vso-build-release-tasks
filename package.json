@@ -1,0 +1,21 @@
+{
+  "name": "vsotasks",
+  "version": "1.0.0",
+  "description": "vso tasks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://christaylorvso.visualstudio.com/DefaultCollection/_git/Vso%20Tasks"
+  },
+  "keywords": [
+    "release"
+  ],
+  "author": "Chris Taylor (Polaris Solutions)",
+  "license": "ISC",
+  "devDependencies": {
+    "vso-task-lib": "^0.5.1"
+  }
+}
