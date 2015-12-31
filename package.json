@@ -1,14 +1,15 @@
 {
-  "name": "vsotasks",
-  "version": "1.0.0",
-  "description": "vso tasks",
+  "name": "vso-build-release-tasks",
+  "version": "0.1.0",
+  "description": "vso build and release tasks",
   "main": "index.js",
+  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://christaylorvso.visualstudio.com/DefaultCollection/_git/Vso%20Tasks"
+    "url": "https://github.com/cege7480/vso-build-release-tasks"
   },
   "keywords": [
     "release"

@@ -1,66 +1,63 @@
 {
-	manifestVersion: 1,
-	id: "christaylor-buildandreleasetasks",
-	name: "Build and Release Management Extensions by Chris Taylor (Polaris Solutions, LLC)",
-	version: "0.1.0",
-	publisher: "christaylor",
-	public: false,
-	targets: [
+	"manifestVersion": 1,
+	"id": "vso-agent-tasks",
+	"name": "Build and Release Management Extensions by Chris Taylor (Polaris Solutions, LLC)",
+	"version": "0.1.0",
+	"publisher": "christaylor",
+	"public": false,
+	"targets": [
 		{
-			id: "Microsoft.VisualStudio.Services"
+			"id": "Microsoft.VisualStudio.Services"
 		}
 	],
-	description: "Build and Release Management Extensions",
-	categories: [
+	"description": "Build and Release Management Extensions",
+	"categories": [
 		"Build and release"
 	],
-	tags: [
-		"",
+	"tags": [
+		"deployment",
 		"build",
-		"webdeploy",
-		"tokens",
-		"docker"
+		"release",
+		"rm",
+		"azure"
 	],
-	content: {
-		details: {
-			path: "extension-overview.md"
+	"content": {
+		"details": {
+			"path": "extension-overview.md"
 		},
-		license: {
-			path: "license.txt"
+		"license": {
+			"path": "license.txt"
 		}
 	},
-	links: {
-		home: {
-			uri: "http://yakshaver.blogspot.com"
+	"links": {
+		"home": {
+			"uri": "https://github.com/cege7480/vso-build-release-tasks"
 		},
-		repository: {
-			uri: "https://github.com/cege7480/vso-build-release-tasks"
+		"repository": {
+			"uri": "https://github.com/cege7480/vso-build-release-tasks"
 		},
-		issues: {
-			uri: "https://github.com/cege7480/vso-build-release-tasks/issues"
+		"issues": {
+			"uri": "https://github.com/cege7480/vso-build-release-tasks/issues"
 		}
 	},
-	branding: {
-		color: "rgb(36, 43, 50)",
-		theme: "dark"
+	
+	"icons": {
+		"default": "images/icon.png"
 	},
-	icons: {
-		default: "images/extension-icon.png"
-	},
-	files: [
+	"files": [
 		{
-			path: "Tasks/SwapAzureDeployment"
+			"path": "Tasks/SwapAzureCloudDeployment"
 		}
 	],
-	contributions: [
+	"contributions": [
 		{
-			id: "azure-swapcloudservicedeploymentslots-task",
-			type: "ms.vss-distributed-task.task",
-			targets: [
+			"id": "azure-swapcloudservicedeploymentslots-task",
+			"type": "ms.vss-distributed-task.task",
+			"targets": [
 				"ms.vss-distributed-task.tasks"
 			],
-			properties: {
-				name: "Tasks/SwapAzureDeployment"
+			"properties": {
+				"name": "Tasks/SwapAzureCloudDeployment"
 			}
 		}
 	]
