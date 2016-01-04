@@ -2,8 +2,11 @@ param (
     [string] 
     $ServiceName = $(throw "-$ServiceName is required."),
     
-	[bool]
-	$IncludeConfiguration = $false
+	[string]
+	$IncludeConfiguration = $false,
+    
+    [string]
+    $RemoveStagingDeploymentSlot = $false
    
  )
 
@@ -32,18 +35,23 @@ if ($stageSlotFound -and $prodSlotFound)
         $productionConfigTask = { Set-AzureDeployment -ServiceName $args[0] -Slot Production -Config -Configuration $args[1] -Verbose -ErrorAction SilentlyContinue }
         $stagingConfigTask = { Set-AzureDeployment -ServiceName $args[0] -Slot Staging -Config -Configuration  $args[1] -Verbose -ErrorAction SilentlyContinue }
 
-        $stagingConfigJob = Start-Job -ScriptBlock $stagingConfigTask -ArgumentList $ServiceName,$tmpProductionCsCfg
-        $productionConfigJob = Start-Job -ScriptBlock $productionConfigTask -ArgumentList $ServiceName,$tmpStagingCscfg
-
+        if ($RemoveStagingDeploymentSlot)
+        {
+            $stagingConfigJob = Start-Job -ScriptBlock { Write-Host "Skipping update of Staging slot since it is scheduled for deletion..." } # Do nothing since we're deleting it.  This is really just to not have a bunch of other if statements to make the delete deployment slot task run faster.  (By not performing an unncessary config update to a slot you're going to delete)
+            $productionConfigJob = Start-Job -ScriptBlock $productionConfigTask -ArgumentList $ServiceName,$tmpStagingCscfg    
+        }
+        else 
+        {
+            $stagingConfigJob = Start-Job -ScriptBlock $stagingConfigTask -ArgumentList $ServiceName,$tmpProductionCsCfg        
+            $productionConfigJob = Start-Job -ScriptBlock $productionConfigTask -ArgumentList $ServiceName,$tmpStagingCscfg
+        }
+        
         Wait-Job -Job $stagingConfigJob, $productionConfigJob -Verbose
 
         Write-Host "Jobs Complete...$(Get-Date)"
 
-        $stagingConfigJobResults = Receive-Job -Job $stagingConfigJob -Wait
-        $productionConfigJobResults = Receive-Job -Job $productionConfigJob -Wait
-
-        $stagingConfigJobResults
-        $productionConfigJobResults
+        Receive-Job -Job $stagingConfigJob -Wait
+        Receive-Job -Job $productionConfigJob -Wait
         
         Write-Host "Deleting Temporary Files...$(Get-Date)"
 
@@ -56,6 +64,13 @@ if ($stageSlotFound -and $prodSlotFound)
 		Write-Host "Swapping VIP...$(Get-Date)"
 
         Move-AzureDeployment -ServiceName $ServiceName -Verbose
+    }
+    
+    if ($RemoveStagingDeploymentSlot)
+    {
+        Write-Host "Removing Staging Deployment for $ServiceName"
+        Remove-AzureDeployment -ServiceName $ServiceName -Slot Staging -DeleteVHD -Force -Verbose   
+    
     }
 
 }else 

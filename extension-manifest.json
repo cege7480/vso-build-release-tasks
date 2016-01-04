@@ -1,64 +1,76 @@
 {
-	"manifestVersion": 1,
-	"id": "vso-agent-tasks",
-	"name": "Build and Release Management Extensions",
-	"version": "0.1.2",
-	"publisher": "christaylor",
-	"public": false,
-	"targets": [
-		{
-			"id": "Microsoft.VisualStudio.Services"
-		}
-	],
-	"description": "Build and Release Management Extensions by Chris Taylor (Polaris Solutions, LLC)",
-	"categories": [
-		"Build and release"
-	],
-	"tags": [
-		"deployment",
-		"build",
-		"release",
-		"rm",
-		"azure"
-	],
-	"content": {
-		"details": {
-			"path": "extension-overview.md"
-		},
-		"license": {
-			"path": "license.txt"
-		}
-	},
-	"links": {
-		"home": {
-			"uri": "https://github.com/cege7480/vso-build-release-tasks"
-		},
-		"repository": {
-			"uri": "https://github.com/cege7480/vso-build-release-tasks"
-		},
-		"issues": {
-			"uri": "https://github.com/cege7480/vso-build-release-tasks/issues"
-		}
-	},
-	
-	"icons": {
-		"default": "images/icon.png"
-	},
-	"files": [
-		{
-			"path": "Tasks/SwapAzureCloudDeployment"
-		}
-	],
-	"contributions": [
-		{
-			"id": "azure-swapcloudservicedeploymentslots-task",
-			"type": "ms.vss-distributed-task.task",
-			"targets": [
-				"ms.vss-distributed-task.tasks"
-			],
-			"properties": {
-				"name": "Tasks/SwapAzureCloudDeployment"
-			}
-		}
-	]
+    "manifestVersion": 1,
+    "id": "vso-agent-tasks",
+    "name": "Build and Release Management Extensions",
+    "version": "0.2.0",
+    "publisher": "christaylor",
+    "public": false,
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "description": "Build and Release Management Extensions by Chris Taylor (Polaris Solutions, LLC)",
+    "categories": [
+        "Build and release"
+    ],
+    "tags": [
+        "deployment",
+        "build",
+        "release",
+        "rm",
+        "azure"
+    ],
+    "content": {
+        "details": {
+            "path": "extension-overview.md"
+        },
+        "license": {
+            "path": "license.txt"
+        }
+    },
+    "links": {
+        "home": {
+            "uri": "https://github.com/cege7480/vso-build-release-tasks"
+        },
+        "repository": {
+            "uri": "https://github.com/cege7480/vso-build-release-tasks"
+        },
+        "issues": {
+            "uri": "https://github.com/cege7480/vso-build-release-tasks/issues"
+        }
+    },
+    "icons": {
+        "default": "images/removecloudslout.png"
+    },
+    "files": [
+        {
+            "path": "Tasks/SwapAzureCloudDeployment"
+        },
+        {
+            "path": "Tasks/RemoveAzureCloudDeployment"
+        }
+    ],
+    "contributions": [
+        {
+            "id": "azure-swapcloudservicedeploymentslots-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "Tasks/SwapAzureCloudDeployment"
+            }
+        },
+        {
+            "id": "azure-removecloudservicedeploymentslot-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "Tasks/RemoveAzureCloudDeployment"
+            }
+        }
+    ]
 }

@@ -1,6 +1,6 @@
 {
   "name": "vso-build-release-tasks",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "vso build and release tasks",
   "main": "index.js",
   
