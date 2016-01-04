@@ -10,11 +10,11 @@
     "Build",
     "Release"
   ],
-  "demands": [],
+  "demands": [ "azureps" ],
   "version": {
     "Major": "0",
     "Minor": "1",
-    "Patch": "0"
+    "Patch": "2"
   },
   "minimumAgentVersion": "1.83.0",
   "instanceNameFormat": "Swap Deployment Slots for $(ServiceName)",

@@ -1,8 +1,8 @@
 {
 	"manifestVersion": 1,
 	"id": "vso-agent-tasks",
-	"name": "Build and Release Management Extensions by Chris Taylor (Polaris Solutions, LLC)",
-	"version": "0.1.0",
+	"name": "Build and Release Management Extensions",
+	"version": "0.1.2",
 	"publisher": "christaylor",
 	"public": false,
 	"targets": [
@@ -10,7 +10,7 @@
 			"id": "Microsoft.VisualStudio.Services"
 		}
 	],
-	"description": "Build and Release Management Extensions",
+	"description": "Build and Release Management Extensions by Chris Taylor (Polaris Solutions, LLC)",
 	"categories": [
 		"Build and release"
 	],

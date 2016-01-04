@@ -2,10 +2,11 @@ param (
     [string] 
     $ServiceName = $(throw "-$ServiceName is required."),
     
-	[switch]
+	[bool]
 	$IncludeConfiguration = $false
    
  )
+
 
 $stageSlotFound = $Null -ne (Get-AzureDeployment -ServiceName $ServiceName -ErrorAction SilentlyContinue -Slot Staging)
 $prodSlotFound = $Null -ne (Get-AzureDeployment -ServiceName $ServiceName -ErrorAction SilentlyContinue -Slot Production)
@@ -28,8 +29,8 @@ if ($stageSlotFound -and $prodSlotFound)
 
         Write-Host "Swapping Configurations...$(Get-Date)"
 
-        $productionConfigTask = { Set-AzureDeployment -ServiceName $args[0] -Slot Production -Config -Configuration $args[1] -Verbose }
-        $stagingConfigTask = { Set-AzureDeployment -ServiceName $args[0] -Slot Staging -Config -Configuration  $args[1] -Verbose }
+        $productionConfigTask = { Set-AzureDeployment -ServiceName $args[0] -Slot Production -Config -Configuration $args[1] -Verbose -ErrorAction SilentlyContinue }
+        $stagingConfigTask = { Set-AzureDeployment -ServiceName $args[0] -Slot Staging -Config -Configuration  $args[1] -Verbose -ErrorAction SilentlyContinue }
 
         $stagingConfigJob = Start-Job -ScriptBlock $stagingConfigTask -ArgumentList $ServiceName,$tmpProductionCsCfg
         $productionConfigJob = Start-Job -ScriptBlock $productionConfigTask -ArgumentList $ServiceName,$tmpStagingCscfg
