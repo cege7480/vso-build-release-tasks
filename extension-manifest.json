@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "vso-agent-tasks",
     "name": "Build and Release Management Extensions",
-    "version": "0.4.0",
+    "version": "0.6.0",
     "publisher": "christaylor",
     "public": false,
     "targets": [

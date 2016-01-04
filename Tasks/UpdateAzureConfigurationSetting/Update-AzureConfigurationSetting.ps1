@@ -3,7 +3,7 @@
   Updates settings of a live service.  Found most of this at http://dzimchuk.net/post/updating-azure-cloud-service-configuration-with-powershell
   Just modified it a bit for using in VSO RM/Build
 
- .Parameter cloudService
+ .Parameter ServiceName
   Name of a cloud service
 
  .Parameter slot
@@ -17,7 +17,7 @@
  
  .Example
    # Update TestSetting value in the staging deployment of AzureSettingsUpdateSample service
-   Update-Setting.ps1 -CloudService AzureSettingsUpdateSample 
+   Update-Setting.ps1 -ServiceName AzureSettingsUpdateSample 
                       -Slot Staging 
                       -SettingKey TestSetting 
                       -SettingValue 'updated value'
@@ -25,7 +25,7 @@
 
 param (
     [string] 
-    $CloudService = $(throw "-CloudService is required."),
+    $ServiceName = $(throw "-ServiceName is required."),
     
     [string]
     [ValidateSet('Production','Staging')]
@@ -54,10 +54,10 @@ function UpdateSettingInRoles([xml]$configuration, [string]$setting, [string]$va
     return $updated
 }
 
-Write-Host "Updating setting $SettingKey for $CloudService" -ForegroundColor Green
+Write-Host "Updating setting $SettingKey for $ServiceName" -ForegroundColor Green
 
 # get current settings from Azure
-$deployment = Get-AzureDeployment -ServiceName $CloudService -Slot $Slot -ErrorAction Stop
+$deployment = Get-AzureDeployment -ServiceName $ServiceName -Slot $Slot -ErrorAction Stop
 
 $configuration = [xml]$deployment.Configuration
 
@@ -71,10 +71,10 @@ if (-not($updated))
 }
 
 # save as a temporary file and upload settings to Azure
-$filename = $env:temp + "\" + $CloudService + ".cscfg"
+$filename = $env:temp + "\" + $ServiceName + ".cscfg"
 $configuration.Save("$filename")
 
-Set-AzureDeployment -Config -ServiceName $CloudService -Configuration "$filename" -Slot $Slot
+Set-AzureDeployment -Config -ServiceName $ServiceName -Configuration "$filename" -Slot $Slot
 
 Remove-Item ("$filename")
 
