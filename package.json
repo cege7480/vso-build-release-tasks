@@ -15,7 +15,7 @@
     "release"
   ],
   "author": "Chris Taylor (Polaris Solutions)",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "vso-task-lib": "^0.5.1"
   }

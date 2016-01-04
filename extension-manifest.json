@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "vso-agent-tasks",
     "name": "Build and Release Management Extensions",
-    "version": "0.2.0",
+    "version": "0.4.0",
     "publisher": "christaylor",
     "public": false,
     "targets": [
@@ -41,7 +41,7 @@
         }
     },
     "icons": {
-        "default": "images/removecloudslout.png"
+        "default": "images/icon.png"
     },
     "files": [
         {
@@ -49,6 +49,9 @@
         },
         {
             "path": "Tasks/RemoveAzureCloudDeployment"
+        },
+        {
+            "path": "Tasks/UpdateAzureConfigurationSetting"
         }
     ],
     "contributions": [
@@ -70,6 +73,16 @@
             ],
             "properties": {
                 "name": "Tasks/RemoveAzureCloudDeployment"
+            }
+        },
+        {
+            "id": "azure-updatecloudserviceconfigurationsetting-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "Tasks/UpdateAzureConfigurationSetting"
             }
         }
     ]
