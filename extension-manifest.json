@@ -1,16 +1,16 @@
 {
     "manifestVersion": 1,
     "id": "vso-agent-tasks",
-    "name": "Build and Release Management Extensions",
-    "version": "0.7.2",
-    "publisher": "christaylor",
+    "name": "VSO Build and Release Management Extensions",
+    "version": "0.9.1",
+    "publisher": "polarissolutions",
     "public": false,
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
         }
     ],
-    "description": "Build and Release Management Extensions by Chris Taylor (Polaris Solutions, LLC)",
+    "description": "Build and Release Management Extensions for Visual Studio Online",
     "categories": [
         "Build and release"
     ],
@@ -31,7 +31,7 @@
     },
     "links": {
         "home": {
-            "uri": "https://github.com/cege7480/vso-build-release-tasks"
+            "uri": "http://www.polarissolutions.com"
         },
         "repository": {
             "uri": "https://github.com/cege7480/vso-build-release-tasks"

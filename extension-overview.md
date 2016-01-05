@@ -15,11 +15,3 @@ Removes a specific Cloud Service deployment slot optionally removing the backing
 
 Updates a value in the Cloud Service configuration (.cscfg) in a specified deployment slot. 
 
-## Links
-
-Some of the links below I used to either learn how to construct the build extension or some of the code within the tasks. Thanks to these people, saved me a lot of debuging time.   
-
-* https://github.com/colindembovsky/cols-agent-tasks
-* http://colinsalmcorner.com/post/developing-a-custom-build-vnext-task-part-1
-* http://www.colinsalmcorner.com/post/developing-a-custom-build-vnext-task-part-2
-* https://github.com/codingoutloud/pageofphotos/blob/master/deploy/azure-vip-swap-plus.ps1
