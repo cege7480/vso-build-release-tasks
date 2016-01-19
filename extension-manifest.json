@@ -2,15 +2,15 @@
     "manifestVersion": 1,
     "id": "vso-agent-tasks",
     "name": "VSO Build and Release Management Extensions",
-    "version": "0.9.1",
+    "version": "1.1.0",
     "publisher": "polarissolutions",
-    "public": false,
+    "public": true,
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
         }
     ],
-    "description": "Build and Release Management Extensions for Visual Studio Online",
+    "description": "Build and Release Management Extensions for Visual Studio Online.",
     "categories": [
         "Build and release"
     ],

@@ -57,7 +57,12 @@ function UpdateSettingInRoles([xml]$configuration, [string]$setting, [string]$va
 Write-Host "Updating setting $SettingKey for $ServiceName" -ForegroundColor Green
 
 # get current settings from Azure
-$deployment = Get-AzureDeployment -ServiceName $ServiceName -Slot $Slot -ErrorAction SilentlyContinue
+$deployment = Get-AzureDeployment -ServiceName $ServiceName -Slot $Slot -ErrorAction SilentlyContinue -ErrorVariable $deploymentErrorVariable
+
+
+if ($deploymentErrorVariable){
+    Write-Warning "Warning - Error when getting deployment.  $deploymentErrorVariable"   
+}
 
 if ($deployment)
 {
