@@ -15,6 +15,10 @@ Removes a specific Cloud Service deployment slot optionally removing the backing
 
 Updates a value in the Cloud Service configuration (.cscfg) in a specified deployment slot. 
 
+### Swap Azure Web site (Azure App Services)
+
+Swaps the VIP for an Azure App Service Web Application given any two slots.  
+
 ## Links
 
 Some of the links below I used to either learn how to construct the build extension or some of the code within the tasks. Thanks to these people, saved me a lot of debuging time.   

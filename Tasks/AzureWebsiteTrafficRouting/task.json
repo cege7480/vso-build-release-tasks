@@ -1,0 +1,160 @@
+{
+    "id": "1d4be6e0-c131-11e5-9f66-81868b857324",
+    "name": "AzureWebsiteTrafficRouting",
+    "friendlyName": "AppService Traffic Route",
+    "description": "Creates a ramp up rule to reroute traffic from one deployment slot to another",
+    "author": "Chris Taylor (Polaris Solutions)",
+    "helpMarkDown": "Replace with markdown to show in help",
+    "category": "Utility",
+    "visibility": [
+        "Build",
+        "Release"
+    ],
+    "demands": [
+        "azureps"
+    ],
+    "version": {
+        "Major": "0",
+        "Minor": "6",
+        "Patch": "0"
+    },
+    "minimumAgentVersion": "1.95.0",
+    "groups": [
+        {
+            "name": "advancedOptions",
+            "displayName": "Advanced Options",
+            "isExpanded": true
+        }
+    ],
+    "instanceNameFormat": "AzureWebsiteTrafficRouting $(message)",
+    "inputs": [
+        {
+            "name": "ConnectedServiceName",
+            "type": "connectedService:AzureRM",
+            "label": "Azure RM Subscription",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "Azure subscription to target for deployment."
+        },
+        {
+            "name": "AppServiceName",
+            "type": "string",
+            "label": "App Service Name:",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "App Service (Azure Website)"
+        },
+        {
+            "name": "SourceSlot",
+            "type": "string",
+            "label": "Source Slot",
+            "defaultValue": "Production",
+            "required": true,
+            "helpMarkDown": "The slot to route traffic from"
+        },
+        {
+            "name": "DestinationSlot",
+            "type": "string",
+            "label": "Destination Slot",
+            "defaultValue": "maint",
+            "required": true,
+            "helpMarkDown": "The slot to route traffic to"
+        },
+        {
+            "name": "DestinationAppServiceRouteName",
+            "type": "string",
+            "label": "Traffic Route Name",
+            "defaultValue": "MaintenancePageRoute",
+            "required": true,
+            "helpMarkDown": "The name of the traffic rule"
+        },
+        {
+            "name": "ReroutePercentage",
+            "type": "string",
+            "label": "Reroute Percentage",
+            "defaultValue": "100",
+            "required": true,
+            "helpMarkDown": "The amount of traffic to reroute to the new slot.",
+            "groupName": "advancedOptions"
+        },
+        {
+            "name": "ChangeIntervalInMinutes",
+            "type": "string",
+            "label": "Change Interval (minutes)",
+            "defaultValue": "3",
+            "required": true,
+            "helpMarkDown": "The amount of time in minutes to ramp up traffic to the new slot",
+            "groupName": "advancedOptions"
+        },
+        {
+            "name": "ChangeStep",
+            "type": "string",
+            "label": "Change Step",
+            "defaultValue": "5",
+            "required": true,
+            "helpMarkDown": "The percentage of traffic to move per interval",
+            "groupName": "advancedOptions"
+        },
+        {
+            "name": "MinReroutePercentage",
+            "type": "string",
+            "label": "Minimum Reroute Percentage",
+            "defaultValue": "5",
+            "required": true,
+            "helpMarkDown": "The percentage of traffic to move initially",
+            "groupName": "advancedOptions"
+        },
+        {
+            "name": "MaxReroutePercentage",
+            "type": "string",
+            "label": "Max Reroute Percentage",
+            "defaultValue": "5",
+            "required": true,
+            "helpMarkDown": "The max percentage of traffic to move initially",
+            "groupName": "advancedOptions"
+        },
+        {
+            "name": "RemoveRoute",
+            "type": "boolean",
+            "label": "Remove Route",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "If checked, the route with the same name is deleted"
+        },
+        {
+            "name": "RemoveAllRoutes",
+            "type": "boolean",
+            "label": "Remove All Routes",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "If checked, all routes associted with the web site are deleted"
+        }
+    ],
+    "dataSourceBindings": [
+        {
+            "target": "ServiceName",
+            "endpointId": "$(ConnectedServiceName)",
+            "dataSourceName": "AzureHostedServiceNames"
+        },
+        {
+            "target": "AppServiceName",
+            "endpointId": "$(ConnectedServiceName)",
+            "dataSourceName": "AzureWebSiteNames",
+            "parameters": {
+                "WebSiteLocation": "$(WebSiteLocation)"
+            }
+        },
+        {
+            "target": "WebSiteLocation",
+            "endpointId": "$(ConnectedServiceName)",
+            "dataSourceName": "AzureLocations"
+        }
+    ],
+    "execution": {
+        "PowerShell": {
+            "target": "$(currentDirectory)\\AzureWebsiteTrafficRouting.ps1",
+            "argumentFormat": "",
+            "workingDirectory": "$(currentDirectory)"
+        }
+    }
+}

@@ -71,7 +71,7 @@ if ($deployment)
     # update setting if needed
     $updated = UpdateSettingInRoles $configuration $SettingKey $SettingValue
 
-    if (-not($updated))
+    if (-not($updated)) 
     {
         Write-Host "No settings have been updated as they are either up to date or not found"
         return
@@ -85,7 +85,7 @@ if ($deployment)
 
     Remove-Item ("$filename")
 }else {
-    Write-Warning "No deployment was found.  Skipping configuration setting update..."
+    Write-Error "No deployment was found.  Skipping configuration setting update..."
     
 }
 Write-Host "Done"

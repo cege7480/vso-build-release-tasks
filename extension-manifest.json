@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "vso-agent-tasks",
     "name": "VSO Build and Release Management Extensions",
-    "version": "1.1.0",
+    "version": "1.2.3",
     "publisher": "polarissolutions",
     "public": true,
     "targets": [
@@ -52,6 +52,9 @@
         },
         {
             "path": "Tasks/UpdateAzureConfigurationSetting"
+        },
+        {
+            "path": "Tasks/SwapAzureWebsiteSlot"
         }
     ],
     "contributions": [
@@ -83,6 +86,16 @@
             ],
             "properties": {
                 "name": "Tasks/UpdateAzureConfigurationSetting"
+            }
+        },
+        {
+            "id": "azure-swapwebsitedeploymentslot-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "Tasks/SwapAzureWebsiteSlot"
             }
         }
     ]
